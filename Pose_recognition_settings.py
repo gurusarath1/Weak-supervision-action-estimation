@@ -1,1 +1,0 @@
-DRAW_FLAG = True
