@@ -301,14 +301,19 @@ def unit_vector(vector):
 
 def angle_between(v1, v2):
     """ Returns the angle in radians between vectors 'v1' and 'v2'::
-
-            >>> angle_between((1, 0, 0), (0, 1, 0))
-            1.5707963267948966
-            >>> angle_between((1, 0, 0), (1, 0, 0))
-            0.0
-            >>> angle_between((1, 0, 0), (-1, 0, 0))
-            3.141592653589793
     """
     v1_u = unit_vector(v1)
     v2_u = unit_vector(v2)
     return np.arccos(np.clip(np.dot(v1_u, v2_u), -1.0, 1.0))
+
+
+def euclidean_distance(a, b):
+    dist = np.linalg.norm(a - b)
+    return dist
+
+
+def get_inv_dict(my_map):
+    inv_map = {v: k for k, v in my_map.items()} #Python 3
+    #inv_map = {v: k for k, v in my_map.iteritems()} #Python 2
+
+    return inv_map
