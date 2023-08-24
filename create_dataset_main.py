@@ -1,3 +1,8 @@
+'''
+Step 1 -
+Run this file to generate unlabeled dataset - *.csv file with all the landmarks
+'''
+
 import cv2
 import mediapipe as mp
 from pose_recognition_settings import *
@@ -30,9 +35,12 @@ if __name__ == '__main__':
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
             if DRAW_FLAG and results.pose_landmarks:
+                # Draw the landmarks on the video frame
                 mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
+                # Visualize the skeleton on 3D space
                 plot_world_landmarks(plt, plt_3d_axs, results.pose_world_landmarks)
 
+                # This function
                 create_unlabelled_data_set(results, dataset_type='left_hand_on_head')
 
             cv2.imshow('Video Running..', image)
